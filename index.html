@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/58a488c3c5.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- HEADER -->
+      <header class="header">
+        <h2 class="header_title">My Current Balance</h2>
+        <h1 class="header_balance" id="balance"></h1>
+      </header>
+      <!-- MAIN -->
+      <div class="history">
+        <h3 class="history_title">History</h3>
+        <div class="entry">
+          <h4 id="entry_title">Rent</h4>
+          <h4 id="entry_amount">-950</h4>
+        </div>
+        <div class="entry">
+          <h4 id="entry_title">Salary</h4>
+          <h4 id="entry_amount">+2500</h4>
+        </div>
+      </div>
+      <!-- FOOTER -->
+      <footer class="footer">
+        <i class="fa-solid fa-circle-minus fa-2xl" id="minus-btn"></i>
+        <form id="name" autocomplete="off">
+          <input
+            id="input-description"
+            type="text"
+            placeholder="Description"
+            name="description"
+          />
+          <input
+            id="input-amount"
+            type="number"
+            placeholder="Amount"
+            name="amount"
+          />
+        </form>
+        <i class="fa-solid fa-circle-plus fa-2xl" id="plus-btn"></i>
+      </footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

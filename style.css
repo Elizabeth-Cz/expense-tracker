@@ -1,0 +1,114 @@
+body {
+  font-family: "inter", sans-serif;
+  margin: 0;
+}
+
+h1,
+h2 {
+  margin: 0.5rem;
+}
+h3,
+h4 {
+  margin: 0;
+}
+/* HEADER */
+.container {
+  align-items: center;
+  background-color: #d8d8d8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  max-height: 1000px;
+  max-width: 1200px;
+  min-height: 700px;
+  min-width: 200px;
+}
+
+.header {
+  background-color: #eeeeee;
+  width: 100%;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header_title {
+  font-weight: 500;
+}
+
+.header_balance {
+  font-weight: 300;
+}
+/* MAIN */
+
+.history {
+  flex-grow: 1;
+  margin: 25px 0 0 0;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  max-width: 500px;
+  min-width: 300px;
+  padding: 1rem;
+}
+.history_title {
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.entry {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+#entry_title,
+#entry_amount {
+  font-weight: 300;
+}
+
+/* FOOTER */
+
+.footer {
+  margin: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#name {
+  display: flex;
+  flex-direction: column;
+}
+
+/* icons */
+
+.fa-solid {
+  margin: 1rem;
+}
+
+#plus-btn {
+  color: #386641;
+}
+
+#minus-btn {
+  color: #86090b;
+}
+
+/* input fields */
+
+input {
+  outline: none;
+  border: 0;
+  margin: 0.2rem;
+  line-height: 1.5rem;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+}
+
+/* DISABLE NUMBER INPUT ARROWS */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
