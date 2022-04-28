@@ -56,7 +56,8 @@ const renderIncomeEntry = function () {
   const deleteIcon = document.createElement("i");
   deleteIcon.setAttribute("class", "fa-solid fa-circle-xmark delete-btn");
   entryDiv.appendChild(deleteIcon);
-  // delete icon function
+  
+  // delete icon function **NOT REMOVING ENTRY FROM ARRAY YET**
   deleteIcon.addEventListener("click", () => {
     deleteIcon.parentNode.remove();
   });
