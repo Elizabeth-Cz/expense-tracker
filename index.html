@@ -22,18 +22,32 @@
       <!-- HEADER -->
       <header class="header">
         <h2 class="header_title">My Current Balance</h2>
-        <h1 class="header_balance" id="balance"></h1>
+        <h1 class="header_balance" id="balance">0</h1>
       </header>
       <!-- MAIN -->
       <div class="history">
         <h3 class="history_title">History</h3>
-        <div class="entry">
-          <h4 id="entry_title">Rent</h4>
-          <h4 id="entry_amount">-950</h4>
-        </div>
-        <div class="entry">
-          <h4 id="entry_title">Salary</h4>
-          <h4 id="entry_amount">+2500</h4>
+        <div class="entries">
+          <!-- <div class="entry">
+            <i class="fa-solid fa-circle-xmark delete-btn"></i>
+            <h4 id="entry_title">Rent</h4>
+            <h4 id="entry_amount" class="expense">950</h4>
+          </div>
+          <div class="entry">
+            <i class="fa-solid fa-circle-xmark delete-btn"></i>
+            <h4 id="entry_title">Salary</h4>
+            <h4 id="entry_amount" class="income">2500</h4>
+          </div>
+          <div class="entry">
+            <i class="fa-solid fa-circle-xmark delete-btn"></i>
+            <h4 id="entry_title">Car wash</h4>
+            <h4 id="entry_amount" class="expense">40</h4>
+          </div>
+          <div class="entry">
+            <i class="fa-solid fa-circle-xmark delete-btn"></i>
+            <h4 id="entry_title">Tax return</h4>
+            <h4 id="entry_amount" class="income">440</h4>
+          </div> -->
         </div>
       </div>
       <!-- FOOTER -->
@@ -45,12 +59,14 @@
             type="text"
             placeholder="Description"
             name="description"
+            required
           />
           <input
             id="input-amount"
             type="number"
             placeholder="Amount"
             name="amount"
+            required
           />
         </form>
         <i class="fa-solid fa-circle-plus fa-2xl" id="plus-btn"></i>
