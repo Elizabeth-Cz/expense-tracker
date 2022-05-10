@@ -5,15 +5,59 @@ const plusBtn = document.querySelector("#plus-btn");
 const inputDes = document.querySelector("#input-description");
 const inputAmount = document.querySelector("#input-amount");
 const entriesDiv = document.querySelector(".entries");
+// const addEntryToggle = document.querySelector(".fa-caret-up");
+// const footer = document.querySelector(".footer-collapsed");
 
-// ADD ENTRY DATE
-// const d = new Date();
-// const month = d.getMonth() + 1;
-// const day = d.getDate();
-// console.log(month);
-// console.log(day);
-// const timeStamp = `${day}.${month}`;
-// console.log(timeStamp);
+function getTime() {
+  const d = new Date();
+  let month = d.getMonth() + 1;
+  switch (month) {
+    case 1:
+      month = "January";
+      break;
+    case 2:
+      month = "February";
+      break;
+    case 3:
+      month = "March";
+      break;
+    case 4:
+      month = "April";
+      break;
+    case 5:
+      month = "May";
+      break;
+    case 6:
+      month = "June";
+      break;
+    case 7:
+      month = "July";
+      break;
+    case 8:
+      month = "August";
+      break;
+    case 9:
+      month = "September";
+      break;
+    case 10:
+      month = "October";
+      break;
+    case 11:
+      month = "November";
+      break;
+    case 12:
+      month = "December";
+      break;
+  }
+  const day = d.getDate();
+  // const hour = d.getHours();
+  // let minute = d.getMinutes();
+  // if (minute < 10) {
+  //   minute = `0${minute}`;
+  // }
+  const timeStamp = `${month} ${day}`;
+  return timeStamp;
+}
 
 const sumAccount = function () {
   if (account.length === 0) {
@@ -47,6 +91,9 @@ const renderEntry = function (v) {
   entryTitle.setAttribute("id", "entry_title");
   entryTitle.textContent = inputDes.value;
 
+  //create info div with amount and date
+  const entryInfo = document.createElement("div");
+
   //create entry amount
   const entryAmount = document.createElement("h4");
   entryAmount.setAttribute("id", "entry_amount");
@@ -56,7 +103,19 @@ const renderEntry = function (v) {
   } else {
     entryAmount.setAttribute("class", "expense");
   }
-  entryDiv.append(deleteIcon, entryTitle, entryAmount);
+
+  // create entry date
+  // const d = new Date();
+  // const month = d.getMonth() + 1;
+  // const day = d.getDate();
+  // const timeStamp = `${day}.${month}`;
+
+  const entryDate = document.createElement("h3");
+  entryDate.setAttribute("class", "entry_date");
+  entryDate.textContent = getTime();
+
+  entryInfo.append(entryAmount, entryDate);
+  entryDiv.append(deleteIcon, entryTitle, entryInfo);
 };
 
 plusBtn.addEventListener("click", () => {
@@ -100,3 +159,7 @@ const delBtn = document.addEventListener("click", function (e) {
     sumAccount();
   }
 });
+
+// addEntryToggle.addEventListener("click", () => {
+//   footer.classList.toggle("footer");
+// });
