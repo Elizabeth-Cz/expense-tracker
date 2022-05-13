@@ -1,5 +1,10 @@
-const account = [];
+let account = [];
+const incomes = [];
+const expenses = [];
+// const xValues = ["Incomes", "Expenses"];
+// const yValues = [];
 const balance = document.querySelector("#balance");
+const balanceContainer = document.querySelector(".container_balance");
 const minusBtn = document.querySelector("#minus-btn");
 const plusBtn = document.querySelector("#plus-btn");
 const inputDes = document.querySelector("#input-description");
@@ -59,21 +64,27 @@ function getTime() {
   return timeStamp;
 }
 
-const sumAccount = function () {
-  if (account.length === 0) {
+const sumAccount = function (incomes, expenses) {
+  let accountBalance = 0;
+  if (account.length > 0) {
+    accountBalance = account.reduce((a, b) => a + b);
+  } else if (account.length === 0) {
     balance.innerHTML = "0";
   }
-  let accountBalance = 0;
-  account.forEach((item) => {
-    accountBalance = accountBalance + item.amount;
-    // console.log(accountBalance);
-    if (accountBalance >= 0) {
-      balance.style.color = "#386641";
-    } else if (accountBalance < 0) {
-      balance.style.color = "#86090b";
-    }
-    balance.innerHTML = accountBalance;
-  });
+  balance.innerHTML = accountBalance;
+  if (accountBalance > 0) {
+    balanceContainer.style.backgroundColor = "#adc698";
+    balance.style.color = "#f6f4f4";
+  } else if (accountBalance < 0) {
+    balanceContainer.style.backgroundColor = "#c05746";
+    balance.style.color = "#f6f4f4";
+  } else {
+    balanceContainer.style.backgroundColor = "#f6f4f4";
+    balance.style.color = "gray";
+    balance.innerHTML = "0";
+  }
+  console.log(accountBalance);
+  console.log(account);
 };
 
 const renderEntry = function (v) {
@@ -104,12 +115,6 @@ const renderEntry = function (v) {
     entryAmount.setAttribute("class", "expense");
   }
 
-  // create entry date
-  // const d = new Date();
-  // const month = d.getMonth() + 1;
-  // const day = d.getDate();
-  // const timeStamp = `${day}.${month}`;
-
   const entryDate = document.createElement("h3");
   entryDate.setAttribute("class", "entry_date");
   entryDate.textContent = getTime();
@@ -120,30 +125,24 @@ const renderEntry = function (v) {
 
 plusBtn.addEventListener("click", () => {
   if (inputAmount.value) {
-    account.push({
-      description: inputDes.value,
-      amount: parseInt(inputAmount.value),
-    });
-    sumAccount();
+    account.push(parseInt(inputAmount.value));
     renderEntry(1);
   }
   inputDes.value = "";
   inputAmount.value = "";
-  console.log(account);
+
+  sumAccount();
 });
 
 minusBtn.addEventListener("click", () => {
   if (inputAmount.value) {
-    account.push({
-      description: inputDes.value,
-      amount: parseInt(-inputAmount.value),
-    });
-    sumAccount();
+    account.push(parseInt(-inputAmount.value));
     renderEntry(0);
   }
   inputDes.value = "";
   inputAmount.value = "";
-  console.log(account);
+
+  sumAccount();
 });
 
 const delBtn = document.addEventListener("click", function (e) {
@@ -152,7 +151,7 @@ const delBtn = document.addEventListener("click", function (e) {
     iconIndex = iconList.indexOf(e.target);
 
     // the amount to deduct from sum
-    console.log(account[iconIndex].amount);
+    // console.log(account[iconIndex].amount);
     account.splice(iconIndex, 1);
     console.log(iconIndex);
     e.target.parentElement.remove();
@@ -160,6 +159,14 @@ const delBtn = document.addEventListener("click", function (e) {
   }
 });
 
-// addEntryToggle.addEventListener("click", () => {
-//   footer.classList.toggle("footer");
-// });
+var coll = document.querySelector(".collapsible");
+
+coll.addEventListener("click", function () {
+  this.classList.toggle("active");
+  const footer = this.previousElementSibling;
+  if (footer.style.display === "flex") {
+    footer.style.display = "none";
+  } else {
+    footer.style.display = "flex";
+  }
+});

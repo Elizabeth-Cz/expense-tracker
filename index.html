@@ -18,65 +18,103 @@
     ></script>
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h2 class="header_title">My Current Balance</h2>
-        <h1 class="header_balance" id="balance">0</h1>
-      </div>
-
-      <div class="history">
-        <h3 class="history_title">History</h3>
+    <div class="main">
+      <!-- NAVBAR -->
+      <nav>
+        <ul class="nav-bar">
+          <li class="nav-bar__item"><i class="fa-solid fa-wallet"></i></li>
+          <li class="nav-bar__item">Expense Tracker</li>
+        </ul>
+      </nav>
+      <!-- MAIN -->
+      <div class="container">
+        <div class="container_balance">
+          <h1 id="balance">Add entry to see your balance</h1>
+        </div>
+        <!-- <div class="history"> -->
+        <!-- <h3 class="history_title">History</h3> -->
         <div class="entries">
           <!-- <div class="entry">
-            <i class="fa-solid fa-circle-xmark delete-btn"></i>
-            <h4 id="entry_title">Rent</h4>
-            <div>
-              <h4 id="entry_amount" class="expense">950</h4>
-              <h3 class="entry_date">May 10</h3>
-            </div>
-          </div> -->
+              <i class="fa-solid fa-circle-xmark delete-btn"></i>
+              <h4 id="entry_title">Rent</h4>
+              <div>
+                <h4 id="entry_amount" class="expense">950</h4>
+                <h3 class="entry_date">May 10</h3>
+              </div>
+            </div> -->
           <!-- <div class="entry">
-            <i class="fa-solid fa-circle-xmark delete-btn"></i>
-            <h4 id="entry_title">Salary</h4>
-            <h4 id="entry_amount" class="income">2500</h4>
-          </div>
-          <div class="entry">
-            <i class="fa-solid fa-circle-xmark delete-btn"></i>
-            <h4 id="entry_title">Car wash</h4>
-            <h4 id="entry_amount" class="expense">40</h4>
-          </div>
-          <div class="entry">
-            <i class="fa-solid fa-circle-xmark delete-btn"></i>
-            <h4 id="entry_title">Tax return</h4>
-            <h4 id="entry_amount" class="income">440</h4>
-          </div> -->
+              <i class="fa-solid fa-circle-xmark delete-btn"></i>
+              <h4 id="entry_title">Salary</h4>
+              <h4 id="entry_amount" class="income">2500</h4>
+            </div>
+            <div class="entry">
+              <i class="fa-solid fa-circle-xmark delete-btn"></i>
+              <h4 id="entry_title">Car wash</h4>
+              <h4 id="entry_amount" class="expense">40</h4>
+            </div>
+            <div class="entry">
+              <i class="fa-solid fa-circle-xmark delete-btn"></i>
+              <h4 id="entry_title">Tax return</h4>
+              <h4 id="entry_amount" class="income">440</h4>
+            </div> -->
         </div>
+        <!-- </div> -->
+        <div class="add-entry">
+          <i class="fa-solid fa-circle-minus fa-2xl" id="minus-btn"></i>
+          <form id="name" autocomplete="off">
+            <label id="label-description" for="description">Description</label>
+            <input
+              id="input-description"
+              type="text"
+              name="description"
+              required
+            />
+            <label id="label-amount" for="amount">Amount</label>
+            <input
+              size="1"
+              id="input-amount"
+              type="number"
+              name="amount"
+              required
+              autofocus
+            />
+          </form>
+          <i class="fa-solid fa-circle-plus fa-2xl" id="plus-btn"></i>
+        </div>
+        <button type="button" class="collapsible">
+          ADD ENTRY<i class="fa-solid fa-caret-up"></i>
+        </button>
       </div>
-      <!-- <div class="footer-collapsed">
-        <h2>ADD ENTRY</h2>
-        <i class="fa-solid fa-caret-up"></i>
-      </div> -->
-      <div class="footer">
-        <i class="fa-solid fa-circle-minus fa-2xl" id="minus-btn"></i>
-        <form id="name" autocomplete="off">
-          <label id="label-description" for="description">Description</label>
-          <input
-            id="input-description"
-            type="text"
-            name="description"
-            required
-          />
-          <label id="label-amount" for="amount">Amount</label>
-          <input
-            size="1"
-            id="input-amount"
-            type="number"
-            name="amount"
-            required
-          />
-        </form>
-        <i class="fa-solid fa-circle-plus fa-2xl" id="plus-btn"></i>
-      </div>
+      <!-- FOOTER -->
+      <footer>
+        <ul class="icons">
+          <li class="icon" id="li">
+            <a
+              href="https://www.linkedin.com/in/elizabeth-czarny-b37027204/"
+              target="_blank"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </li>
+          <li class="icon" id="mail">
+            <a href="mailto: liz.cz91@gmail.com" target="_blank"
+              ><i class="fa-solid fa-envelope"></i
+            ></a>
+          </li>
+          <li class="icon" id="github">
+            <a
+              href="https://github.com/Elizabeth-Cz?tab=repositories"
+              target="_blank"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+          </li>
+          <li class="icon" id="whatsapp">
+            <a href="https://wa.me/310630570132" target="_blank"
+              ><i class="fa-brands fa-whatsapp"> </i
+            ></a>
+          </li>
+        </ul>
+        <p>&copy;Elizabeth Czarny 2022</p>
+      </footer>
     </div>
     <script src="app.js"></script>
   </body>
