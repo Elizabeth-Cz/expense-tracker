@@ -1,8 +1,12 @@
 let account = [];
-const incomes = [];
-const expenses = [];
+let incomes = [];
+let expenses = [];
+let sumIncomes = 0;
+let sumExpenses = 0;
+const yValues = [sumIncomes, sumExpenses];
+const barColors = ["#adc698", "#c05746"];
 // const xValues = ["Incomes", "Expenses"];
-// const yValues = [];
+
 const balance = document.querySelector("#balance");
 const balanceContainer = document.querySelector(".container_balance");
 const minusBtn = document.querySelector("#minus-btn");
@@ -10,8 +14,9 @@ const plusBtn = document.querySelector("#plus-btn");
 const inputDes = document.querySelector("#input-description");
 const inputAmount = document.querySelector("#input-amount");
 const entriesDiv = document.querySelector(".entries");
-// const addEntryToggle = document.querySelector(".fa-caret-up");
-// const footer = document.querySelector(".footer-collapsed");
+
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChart);
 
 function getTime() {
   const d = new Date();
@@ -55,23 +60,29 @@ function getTime() {
       break;
   }
   const day = d.getDate();
-  // const hour = d.getHours();
-  // let minute = d.getMinutes();
-  // if (minute < 10) {
-  //   minute = `0${minute}`;
-  // }
   const timeStamp = `${month} ${day}`;
   return timeStamp;
 }
 
-const sumAccount = function (incomes, expenses) {
-  let accountBalance = 0;
-  if (account.length > 0) {
-    accountBalance = account.reduce((a, b) => a + b);
-  } else if (account.length === 0) {
-    balance.innerHTML = "0";
+const sumAccount = function () {
+  if (incomes.length > 0) {
+    sumIncomes = incomes.reduce((a, b) => a + b);
+  } else if (incomes.length === 0) {
+    sumIncomes = 0;
   }
+  if (expenses.length > 0) {
+    sumExpenses = expenses.reduce((a, b) => a + b);
+  } else if (expenses.length === 0) {
+    sumExpenses = 0;
+  }
+  let accountBalance = sumIncomes - sumExpenses;
+  // if (account.length > 0) {
+  //   accountBalance = account.reduce((a, b) => a + b);
+  // } else if (account.length === 0) {
+  //   balance.innerHTML = "0";
+  // }
   balance.innerHTML = accountBalance;
+  // applying styling according to balance
   if (accountBalance > 0) {
     balanceContainer.style.backgroundColor = "#adc698";
     balance.style.color = "#f6f4f4";
@@ -83,8 +94,9 @@ const sumAccount = function (incomes, expenses) {
     balance.style.color = "gray";
     balance.innerHTML = "0";
   }
-  console.log(accountBalance);
-  console.log(account);
+  console.log(`incomes:${sumIncomes}`);
+  console.log(`expenses: ${sumExpenses}`);
+  console.log(`account balance: ${accountBalance}`);
 };
 
 const renderEntry = function (v) {
@@ -95,7 +107,6 @@ const renderEntry = function (v) {
 
   //create delete icon
   const deleteIcon = document.createElement("i");
-  deleteIcon.setAttribute("class", "fa-solid fa-circle-xmark x");
 
   //create entry title
   const entryTitle = document.createElement("h4");
@@ -111,8 +122,16 @@ const renderEntry = function (v) {
   entryAmount.textContent = inputAmount.value;
   if (v) {
     entryAmount.setAttribute("class", "income");
+    deleteIcon.setAttribute(
+      "class",
+      "fa-solid fa-circle-xmark x income-delete"
+    );
   } else {
     entryAmount.setAttribute("class", "expense");
+    deleteIcon.setAttribute(
+      "class",
+      "fa-solid fa-circle-xmark x expense-delete"
+    );
   }
 
   const entryDate = document.createElement("h3");
@@ -125,37 +144,48 @@ const renderEntry = function (v) {
 
 plusBtn.addEventListener("click", () => {
   if (inputAmount.value) {
-    account.push(parseInt(inputAmount.value));
+    incomes.push(parseInt(inputAmount.value));
     renderEntry(1);
+    sumAccount();
   }
   inputDes.value = "";
   inputAmount.value = "";
 
-  sumAccount();
+  console.log(incomes);
+  drawChart();
 });
 
 minusBtn.addEventListener("click", () => {
   if (inputAmount.value) {
-    account.push(parseInt(-inputAmount.value));
+    expenses.push(parseInt(inputAmount.value));
+    // expenses += parseInt(inputAmount.value);
     renderEntry(0);
+    sumAccount();
   }
   inputDes.value = "";
   inputAmount.value = "";
 
-  sumAccount();
+  console.log(expenses);
+  drawChart();
 });
 
 const delBtn = document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("x")) {
-    const iconList = Array.from(document.querySelectorAll(".x"));
+  if (e.target.classList.contains("income-delete")) {
+    const iconList = Array.from(document.querySelectorAll(".income-delete"));
     iconIndex = iconList.indexOf(e.target);
-
-    // the amount to deduct from sum
-    // console.log(account[iconIndex].amount);
-    account.splice(iconIndex, 1);
+    incomes.splice(iconIndex, 1);
     console.log(iconIndex);
     e.target.parentElement.remove();
     sumAccount();
+    drawChart();
+  } else if (e.target.classList.contains("expense-delete")) {
+    const iconList = Array.from(document.querySelectorAll(".expense-delete"));
+    iconIndex = iconList.indexOf(e.target);
+    expenses.splice(iconIndex, 1);
+    console.log(iconIndex);
+    e.target.parentElement.remove();
+    sumAccount();
+    drawChart();
   }
 });
 
@@ -170,3 +200,26 @@ coll.addEventListener("click", function () {
     footer.style.display = "flex";
   }
 });
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ["transaction", "amount"],
+    ["incomes", sumIncomes],
+    ["expenses", sumExpenses],
+  ]);
+
+  var options = {
+    backgroundColor: "none",
+    // is3D: true,
+    slices: {
+      0: { color: barColors[0] },
+      1: { color: barColors[1] },
+    },
+  };
+
+  var chart = new google.visualization.PieChart(
+    document.getElementById("myChart")
+  );
+
+  chart.draw(data, options);
+}

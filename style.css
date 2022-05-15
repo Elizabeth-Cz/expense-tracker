@@ -38,7 +38,7 @@ h2 {
   border-bottom: 5px solid var(--color-background-secondary);
   flex-direction: row;
   width: 100%;
-  padding: 0.2rem 1rem;
+  padding: 0.5rem 1rem;
 }
 .nav-bar__item {
   margin: 1rem;
@@ -55,13 +55,14 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  /* make sure doesn't expand vh */
   flex-grow: 1;
 }
 
 .container_balance {
   margin: 0.5rem;
   padding: 0.5rem;
-  width: 90%;
+  width: 80%;
   background-color: var(--color-background-secondary);
   border-radius: 15px;
   /* box-shadow: 1px 1px 5px gray; */
@@ -79,7 +80,7 @@ h2 {
 }
 .entries {
   width: 80%;
-  height: 50vh;
+  /* max-height: 10%; */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -158,14 +159,14 @@ html {
   border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* margin-bottom: 0; */
 }
 .collapsible > .fa-caret-up {
-  font-size: 2rem;
+  font-size: 1.5rem;
   transform: rotate(-90deg);
   color: var(--color-background-secondary);
   text-shadow: -3px -3px 6px #ffffff, 3px 3px 6px rgba(0, 0, 0, 0.25),
@@ -181,17 +182,18 @@ html {
   display: none;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.6rem 0.6rem 0;
   background: var(--color-background-secondary);
 }
 
 #name {
   display: flex;
   flex-direction: column;
-  max-width: 60%;
+  max-width: 50%;
   flex-grow: 1;
+  padding: 0 1rem;
 }
 
 /* icons */
@@ -202,7 +204,7 @@ html {
 #minus-btn,
 #plus-btn {
   font-size: 3rem;
-  margin: 1rem;
+  /* margin: 0.5rem; */
 }
 
 #plus-btn {
@@ -212,17 +214,19 @@ html {
 #minus-btn {
   color: var(--color-red-primary);
 }
-.fa-circle-xmark {
-  color: var(--color-red-secondary);
+
+.income-delete,
+.expense-delete {
   opacity: 0;
   padding-right: 0.5rem;
+  color: var(--color-red-secondary);
 }
 
-.entry:hover .fa-circle-xmark {
+.entry:hover .x {
   opacity: 0.2;
 }
 
-.entry > .fa-circle-xmark:hover {
+.entry > .x:hover {
   opacity: 1;
 }
 
@@ -234,15 +238,15 @@ html {
   outline: none;
   border: 2px solid gray;
   border-radius: 5px;
-  padding: 0 0.5rem;
-  margin: 3px 0;
-  font-size: 1.5rem;
+  /* padding: 0 0.5rem; */
+  /* margin: 3px 0; */
+  font-size: 1rem;
   font-family: "Niconne", cursive;
 }
 
 #label-description,
 #label-amount {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /* DISABLE NUMBER INPUT ARROWS */
@@ -251,10 +255,12 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-footer {
-  color: black;
+.chart-container {
   display: none;
+}
+footer {
+  display: none;
+  color: black;
   flex-direction: column;
   align-items: center;
 }
@@ -282,12 +288,39 @@ p {
 }
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10vh 80vh 10vh;
+    gap: 0px 0px;
+    grid-template-areas:
+      "nav nav"
+      "container canvas"
+      "footer footer";
+  }
+  nav {
+    grid-area: nav;
+  }
   .container {
     /* margin-left: 1.5rem; */
-    max-width: 50%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
+    grid-area: container;
   }
+
   footer {
     display: flex;
+    grid-area: footer;
+    border-top: 5px solid var(--color-background-secondary);
+  }
+
+  #myChart {
+    /* height: 100%; */
+    /* width: 100%; */
+    /* background-color: #6a994e; */
+    display: block;
+    grid-area: canvas;
+    margin: auto;
   }
 }
