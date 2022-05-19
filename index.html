@@ -18,77 +18,75 @@
     ></script>
   </head>
   <body>
-    <div class="main">
-      <!-- NAVBAR -->
-      <nav>
-        <ul class="nav-bar">
-          <li class="nav-bar__item"><i class="fa-solid fa-wallet"></i></li>
-          <li class="nav-bar__item">Expense Tracker</li>
+    <!-- NAVBAR -->
+    <!-- MAIN -->
+    <div class="container">
+      <nav class="navbar">
+        <ul class="navbar__list">
+          <li class="navbar__item">
+            <i class="fa-solid fa-wallet navbar__icon"></i>
+          </li>
+          <li class="navbar__item navbar__heading">Expense Tracker</li>
         </ul>
       </nav>
-      <!-- MAIN -->
-      <div class="container">
-        <div class="container_balance">
-          <h1 id="balance">Add entry to see your balance</h1>
+      <div class="summery">
+        <h1 class="summery__heading" id="balance">
+          Add entry to see your balance
+        </h1>
+        <div class="summery__inc-exp">
+          <div class="summery__income">
+            <h4>INCOME</h4>
+            <p id="money-plus" class="money plus"></p>
+          </div>
+          <div class="summery__expenses">
+            <h4>EXPENSE</h4>
+            <p id="money-minus" class="money minus"></p>
+          </div>
         </div>
-        <!-- <div class="history"> -->
-        <!-- <h3 class="history_title">History</h3> -->
-        <div class="entries">
-          <!-- <div class="entry">
-              <i class="fa-solid fa-circle-xmark delete-btn"></i>
-              <h4 id="entry_title">Rent</h4>
-              <div>
-                <h4 id="entry_amount" class="expense">950</h4>
-                <h3 class="entry_date">May 10</h3>
-              </div>
-            </div> -->
-          <!-- <div class="entry">
-              <i class="fa-solid fa-circle-xmark delete-btn"></i>
-              <h4 id="entry_title">Salary</h4>
-              <h4 id="entry_amount" class="income">2500</h4>
-            </div>
-            <div class="entry">
-              <i class="fa-solid fa-circle-xmark delete-btn"></i>
-              <h4 id="entry_title">Car wash</h4>
-              <h4 id="entry_amount" class="expense">40</h4>
-            </div>
-            <div class="entry">
-              <i class="fa-solid fa-circle-xmark delete-btn"></i>
-              <h4 id="entry_title">Tax return</h4>
-              <h4 id="entry_amount" class="income">440</h4>
-            </div> -->
-          <!-- </div> -->
-        </div>
-        <div class="add-entry">
-          <i class="fa-solid fa-circle-minus fa-2xl" id="minus-btn"></i>
-          <form id="name" autocomplete="off">
-            <label id="label-description" for="description">Description</label>
-            <input
-              id="input-description"
-              type="text"
-              name="description"
-              required
-            />
-            <label id="label-amount" for="amount">Amount</label>
-            <input
-              size="1"
-              id="input-amount"
-              type="number"
-              name="amount"
-              required
-              autofocus
-            />
-          </form>
-          <i class="fa-solid fa-circle-plus fa-2xl" id="plus-btn"></i>
-        </div>
-        <button type="button" class="collapsible">
-          ADD ENTRY<i class="fa-solid fa-caret-up"></i>
-        </button>
       </div>
-      <div id="myChart" style="width: 600px; height: 600px"></div>
+      <div class="entries">
+        <!-- <div class="entry">
+            <i class="fa-solid fa-circle-xmark x expense-delete"></i>
+            <h4 id="entry_title">Rent</h4>
+            <div>
+              <h4 id="entry_amount" class="expense">950</h4>
+              <h3 class="entry_date">May 10</h3>
+            </div>
+          </div>
+          <div class="entry">
+            <i class="fa-solid fa-circle-xmark x income-delete"></i>
+            <h4 id="entry_title">Salary</h4>
+            <h4 id="entry_amount" class="income">2500</h4>
+          </div>
+          <div class="entry">
+            <i class="fa-solid fa-circle-xmark x expense-delete"></i>
+            <h4 id="entry_title">Car wash</h4>
+            <h4 id="entry_amount" class="expense">40</h4>
+          </div>
+          <div class="entry">
+            <i class="fa-solid fa-circle-xmark x income-delete"></i>
+            <h4 id="entry_title">Tax return</h4>
+            <h4 id="entry_amount" class="income">440</h4>
+          </div> -->
+      </div>
+      <div class="add-entry">
+        <i class="fa-solid fa-circle-minus fa-2xl" id="minus-btn"></i>
+        <form id="name" autocomplete="off">
+          <label id="label-description" for="description">Description</label>
+          <input id="input-description" type="text" name="description" />
+          <label id="label-amount" for="amount">Amount</label>
+          <input size="1" id="input-amount" type="number" name="amount" />
+        </form>
+        <i class="fa-solid fa-circle-plus fa-2xl" id="plus-btn"></i>
+      </div>
+      <button type="button" class="collapsible">
+        ADD ENTRY<i class="fa-solid fa-caret-up"></i>
+      </button>
+    </div>
+    <!-- <div id="myChart" style="width: 100%; height: 100%"></div> -->
 
-      <!-- FOOTER -->
-      <footer>
+    <!-- FOOTER -->
+    <!-- <footer>
         <ul class="icons">
           <li class="icon" id="li">
             <a
@@ -116,8 +114,7 @@
           </li>
         </ul>
         <p>&copy;Elizabeth Czarny 2022</p>
-      </footer>
-    </div>
+      </footer> -->
     <script
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
